@@ -1,13 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react'
 
-const SortPopup = React.memo(function SortPopup({popupItems}) {
-  const [activePopupItem, setActivePopupItem] = useState(0);
+const SortPopup = React.memo(function SortPopup({popupItems, onSortTypeClick, activeSortType}) {
+  // const [activePopupItem, setActivePopupItem] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const sortRef = useRef();
-  const activeLabel = popupItems[activePopupItem].name;
+  const activeLabel = popupItems.find(obj => obj.type === activeSortType).name;
 
   const onSelectedPopupItem = (index) => {
-      setActivePopupItem(index);
+      onSortTypeClick(index);
       setShowPopup(false);
   }
 
@@ -53,7 +53,11 @@ const SortPopup = React.memo(function SortPopup({popupItems}) {
 
                 { popupItems &&
                   popupItems
-                  .map((obj, index) => <li className = {activePopupItem === index ? 'active' : ''} onClick = {() => onSelectedPopupItem(index)} key = {`${obj.type}_${index}`}>{obj.name}</li>)
+                  .map((obj, index) => 
+                  <li className = {
+                    activeSortType === obj.type ? 'active' : ''} 
+                    onClick = {() => onSelectedPopupItem(obj.type)} 
+                    key = {`${obj.type}_${index}`}>{obj.name}</li>)
                 }
                
               </ul>
