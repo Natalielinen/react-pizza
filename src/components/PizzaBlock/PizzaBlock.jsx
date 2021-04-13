@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from "../Button/Button";
 
 
-function PizzaBlock({name, imageUrl, sizes, price, types}) {
+function PizzaBlock({id, name, imageUrl, sizes, price, types, onAddToCart, countInCart}) {
   const typeNames = ['тонкое', 'традиционное'];
   const avaiableSizes = [26, 30, 40]
   const [activeType, setActiveType] = useState(types[0]);
-  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [activeSize, setActiveSize] = useState(0);
 
   const onSelectedType = (index) => {
     setActiveType(index)
@@ -18,7 +19,18 @@ function PizzaBlock({name, imageUrl, sizes, price, types}) {
     
 }
 
-  
+const handleOnAddToCArt = () => {
+  const obj = {
+    id, 
+    name,
+    imageUrl,
+    price,
+    size: avaiableSizes[activeSize],
+    type: typeNames[activeType],
+  }
+  onAddToCart(obj);
+}
+
   return (
     <div className="pizza-block">
       <img
@@ -43,7 +55,8 @@ function PizzaBlock({name, imageUrl, sizes, price, types}) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+
+        <Button className="button--add" onClick ={handleOnAddToCArt} outline>
           <svg
             width="12"
             height="12"
@@ -57,8 +70,8 @@ function PizzaBlock({name, imageUrl, sizes, price, types}) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {countInCart && <i>{countInCart}</i>}
+          </Button>
       </div>
     </div>
   );
