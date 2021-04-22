@@ -1,26 +1,26 @@
 const initialState = {
-    pizzas: [],
-    isLoaded: false
+  items: [],
+  isLoaded: false,
+};
 
-}
+const pizzas = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_PIZZAS':
+      return {
+        ...state,
+        items: action.payload,
+        isLoaded: true,
+      };
 
-const pizzasReducer = (state = initialState, action) => {
+    case 'SET_LOADED':
+      return {
+        ...state,
+        isLoaded: action.payload,
+      };
 
-    switch (action.type) {
-        case 'SET_PIZZAS':
-            return {
-                ...state,
-                pizzas: action.payload,
-                    isLoaded: true,
-            }
-        case 'SET_LOADED':
-            return {
-                ...state,
-                isLoaded: action.payload
-            }
-        default:
-            return state;
-    }
-}
+    default:
+      return state;
+  }
+};
 
-export default pizzasReducer;
+export default pizzas;

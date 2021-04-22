@@ -1,24 +1,19 @@
-
 import React from 'react';
-import { Route } from 'react-router';
-
 
 import { Header } from './components';
-import {Home, Cart} from './Pages';
+import { Home, Cart } from './Pages';
+import { Route } from 'react-router-dom';
 
-
-function App () {
+function App() {
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
-        <Route exact path = '/' component = {Home} />
-        <Route path = '/cart' component = {Cart} />
+        <Route path="/" component={Home} exact />
+        <Route path="/cart" component={Cart} exact />
       </div>
     </div>
   );
-  
 }
-
 
 export default App;

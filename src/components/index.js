@@ -1,8 +1,7 @@
-import Header from './Header/Header';
-import Button from './Button/Button';
-import Categories from './Categories/Categories';
-import SortPopup from './SortPopup/SortPopup';
-import PizzaBlock from './PizzaBlock/PizzaBlock';
-import PizzaLoader from './PizzaBlock/PizzaLoader';
-
-export {Header, Button, Categories, SortPopup, PizzaBlock, PizzaLoader};
+export { default as Button } from './Button';
+export { default as Header } from './Header';
+export { default as Categories } from './Categories';
+export { default as SortPopup } from './SortPopup';
+export { default as CartItem } from './CartItem';
+export { default as PizzaBlock } from './PizzaBlock';
+export { default as PizzaLoadingBlock } from './PizzaBlock/LoadingBlock';
